@@ -4,6 +4,7 @@
     "description": "Syntax highlighting for the Axon programming language",
     "version": "0.0.1",
     "publisher": "amackayfoss",
+    "repository": "https://github.com/a-mackay/axon-syntax-highlighting",
     "engines": {
         "vscode": "^1.24.0"
     },
