@@ -1,0 +1,213 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Axon",
+    "patterns": [
+        {
+            "include": "#coreFunctions"
+        },
+        {
+            "include": "#calledElements"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#languageConstants"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#literals"
+        },
+        {
+            "include": "#variables"
+        }
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [{
+                "name": "keyword.control.axon",
+                "match": "\\b(if|else|return|try|catch|throw|do|end)\\b"
+            }]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.axon",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.axon",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.triple.axon",
+                    "begin": "\"\"\"",
+                    "end": "\"\"\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.axon",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.raw.axon",
+                    "begin": "r\"",
+                    "end": "\""
+                },
+                {
+                    "name": "string.quoted.other.uri.axon",
+                    "begin": "`",
+                    "end": "`",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.axon",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.axon",
+                    "begin": "//",
+                    "end": "$"
+                },
+                {
+                    "name": "comment.block.axon",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "calledElements": {
+            "patterns": [
+                {
+                    "name": "meta.functioncall.axon",
+                    "match": "(?<=\\.)[a-zA-Z0-9_]+"
+                },
+                {
+                    "name": "meta.trapcall.axon",
+                    "match": "(?<=\\->)[a-zA-Z0-9_]+"
+                }
+            ]
+        },
+        "languageConstants": {
+            "patterns": [{
+                "name": "constant.language.axon",
+                "match": "\\b(null|true|false)\\b"
+            }]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.logical.axon",
+                    "match": "\\b(not|and|or)\\b"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.axon",
+                    "match": "(\\+|\\*|\\%)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.subtraction.axon",
+                    "match": "\\-(?!>)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.division.axon",
+                    "match": "/(?!/)"
+                },
+                {
+                    "name": "keyword.operator.range.axon",
+                    "match": "\\.\\."
+                },
+                {
+                    "name": "keyword.operator.trap.axon",
+                    "match": "\\->"
+                },
+                {
+                    "name": "keyword.operator.dotcall.axon",
+                    "match": "\\.(?!\\.)"
+                },
+                {
+                    "name": "keyword.operator.comparison.axon",
+                    "match": "(==|!=|<=>|<=|>=|>|<)"
+                },
+                {
+                    "name": "keyword.operator.lambda.axon",
+                    "match": "=>"
+                },
+                {
+                    "name": "keyword.operator.assignment.axon",
+                    "match": "=(?!(=|>))"
+                },
+                {
+                    "name": "keyword.operator.definition.axon",
+                    "match": ":"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.defined.axon",
+                    "match": "[a-zA-Z0-9_]+(\\s)*(?=:)"
+                },
+                {
+                    "name": "variable.assigned.axon",
+                    "match": "[a-zA-Z0-9_]+(\\s)*(?==)"
+                }
+            ]
+        },
+        "literals": {
+            "patterns": [
+                {
+                    "name": "constant.other.date.axon",
+                    "match": "\\b(\\d{4}\\-\\d{2}\\-\\d{2})\\b"
+                },
+                {
+                    "name": "constant.other.daterange.axon",
+                    "match": "\\b(\\d{4}\\-\\d{2})\\b"
+                },
+                {
+                    "name": "constant.other.time.axon",
+                    "match": "\\b((\\d)?\\d:\\d{2}(:\\d{2})?)\\b"
+                },
+                {
+                    "name": "constant.numeric.axon",
+                    "match": "\\b(\\d(\\d|_)*(\\.(\\d(\\d|_)*))?(e(\\-)?(\\d)(\\d|_)*)?)\\b"
+                },
+                {
+                    "name": "constant.other.bin.axon",
+                    "begin": "\\{bin\\,(\\s)*mime(\\s)*:\"",
+                    "end": "\"(\\s)*\\}"
+                }
+            ]
+        },
+        "coreFunctions": {
+            "patterns": [
+                {
+                    "name": "support.function.core.dotcalled.axon",
+                    "match": "(?<=\\.)\\b(about|abs|add|addAll|addCol|addColMeta|addMeta|addRow|addRows|all|any|as|avg|call|capitalize|chart|col|colNames|colToList|cols|colsToLocale|commit|concat|contains|context|coord|coordDist|coordLat|coordLng|count|curFunc|date|dateTime|day|dayOfYear|debugType|decapitalize|diags|diff|dis|dst|each|eachDay|eachMonth|eachWhile|echo|emailSend|end|endsWith|eval|extAdd|extRemove|extSettings|extSettingsCommit|fandoc|filterToFunc|find|findAll|first|flatMap|fold|foldCol|foldCols|foldEnd|foldStart|folioBackup|folioBackupCleanup|folioBackupDelete|folioBackups|folioCompact|folioEmptyTrash|folioSetMode|folioSnapshot|folioSnapshotDelete|folioSnapshots|format|formats|fromJavaMillis|func|funcs|get|getSafe|gridColKinds|gridColsToDict|gridRowsToDict|has|heading|hour|hoursInDay|httpSiteUri|index|indexr|insert|insertAll|invoke|invokeAction|isAlpha|isAlphaNum|isBool|isDate|isDateTime|isDict|isDigit|isEmpty|isEven|isFunc|isGrid|isKeyword|isList|isLower|isMetric|isNaN|isNumber|isOdd|isRef|isSpace|isStr|isTagName|isTime|isUpper|isUri|isWeekday|isWeekend|join|joinAll|keepCols|last|lastMonth|lastWeek|lastYear|licStatus|log|logDebug|logErr|logInfo|logRead|logWarn|lower|map|marker|max|merge|meta|min|minute|missing|month|moveTo|na|name|names|nan|nav|navChildren|navCommonAncestor|navFilter|navLevels|navProjNames|navTrees|negInf|now|nowTicks|numDaysInMonth|occurred|ops|padl|padr|params|parseBool|parseDate|parseDateTime|parseFilter|parseFloat|parseInt|parseNumber|parseRef|parseTime|parseUnit|parseUri|passwordSet|pastMonth|pastWeek|pastYear|pivot|posInf|reFind|reGroups|reMatches|read|readAll|readAllTagNames|readAllTagVals|readById|readByIdPersistentTags|readByIdTransientTags|readByIds|readByName|readCount|readLink|readProjStatus|recDisable|recDup|recEdit|recEnable|recForm|recFormCommit|recNew|recTrash|refDis|refGen|remove|removeCol|removeCols|removeMarker|renameCol|reorderCols|replace|second|set|size|sort|sortr|split|spread|start|startsWith|sum|swizzleRefs|table|tags|thisMonth|thisWeek|thisYear|time|times|to|toAxonCode|toChar|toDateSpan|toDateTimeSpan|toGrid|toHex|toJavaMillis|toLocale|toRadix|toRec|toRecId|toRecIdList|toRecList|toSpan|toStr|toTagName|toTimeZone|today|trap|trim|trimEnd|trimStart|tz|tzdb|uiLink|uiLinkAbs|uiNavProjNames|unique|unit|unitdb|unitsEq|upper|uriBasename|uriDecode|uriEncode|uriExt|uriHost|uriIsDir|uriName|uriPath|uriPathStr|uriPort|uriScheme|userCur|userIsProjAccessible|userRead|userReadAll|userReadById|userSetPassword|validateFilter|validateNotBlank|validateTagName|validateUsername|vals|watchAdd|watchClose|watchFeed|watchOpen|watchPoll|watchRemove|watchSub|watchUnsub|weekOfYear|weekday|xq|xqDefine|xqEval|xqExecute|xqFindAll|xqFlatMap|xqHisRead|xqHisRollup|xqHisRollupAuto|xqMap|xqPivot|xqProjs|xqReadAll|xqReadAllList|xqReadByIds|xqReadByIdsList|year|yesterday)\\b"
+                },
+                {
+                    "name": "support.function.core.called.axon",
+                    "match": "\\b(about|abs|add|addAll|addCol|addColMeta|addMeta|addRow|addRows|all|any|as|avg|call|capitalize|chart|col|colNames|colToList|cols|colsToLocale|commit|concat|contains|context|coord|coordDist|coordLat|coordLng|count|curFunc|date|dateTime|day|dayOfYear|debugType|decapitalize|diags|diff|dis|dst|each|eachDay|eachMonth|eachWhile|echo|emailSend|end|endsWith|eval|extAdd|extRemove|extSettings|extSettingsCommit|fandoc|filterToFunc|find|findAll|first|flatMap|fold|foldCol|foldCols|foldEnd|foldStart|folioBackup|folioBackupCleanup|folioBackupDelete|folioBackups|folioCompact|folioEmptyTrash|folioSetMode|folioSnapshot|folioSnapshotDelete|folioSnapshots|format|formats|fromJavaMillis|func|funcs|get|getSafe|gridColKinds|gridColsToDict|gridRowsToDict|has|heading|hour|hoursInDay|httpSiteUri|index|indexr|insert|insertAll|invoke|invokeAction|isAlpha|isAlphaNum|isBool|isDate|isDateTime|isDict|isDigit|isEmpty|isEven|isFunc|isGrid|isKeyword|isList|isLower|isMetric|isNaN|isNumber|isOdd|isRef|isSpace|isStr|isTagName|isTime|isUpper|isUri|isWeekday|isWeekend|join|joinAll|keepCols|last|lastMonth|lastWeek|lastYear|licStatus|log|logDebug|logErr|logInfo|logRead|logWarn|lower|map|marker|max|merge|meta|min|minute|missing|month|moveTo|na|name|names|nan|nav|navChildren|navCommonAncestor|navFilter|navLevels|navProjNames|navTrees|negInf|now|nowTicks|numDaysInMonth|occurred|ops|padl|padr|params|parseBool|parseDate|parseDateTime|parseFilter|parseFloat|parseInt|parseNumber|parseRef|parseTime|parseUnit|parseUri|passwordSet|pastMonth|pastWeek|pastYear|pivot|posInf|reFind|reGroups|reMatches|read|readAll|readAllTagNames|readAllTagVals|readById|readByIdPersistentTags|readByIdTransientTags|readByIds|readByName|readCount|readLink|readProjStatus|recDisable|recDup|recEdit|recEnable|recForm|recFormCommit|recNew|recTrash|refDis|refGen|remove|removeCol|removeCols|removeMarker|renameCol|reorderCols|replace|second|set|size|sort|sortr|split|spread|start|startsWith|sum|swizzleRefs|table|tags|thisMonth|thisWeek|thisYear|time|times|to|toAxonCode|toChar|toDateSpan|toDateTimeSpan|toGrid|toHex|toJavaMillis|toLocale|toRadix|toRec|toRecId|toRecIdList|toRecList|toSpan|toStr|toTagName|toTimeZone|today|trap|trim|trimEnd|trimStart|tz|tzdb|uiLink|uiLinkAbs|uiNavProjNames|unique|unit|unitdb|unitsEq|upper|uriBasename|uriDecode|uriEncode|uriExt|uriHost|uriIsDir|uriName|uriPath|uriPathStr|uriPort|uriScheme|userCur|userIsProjAccessible|userRead|userReadAll|userReadById|userSetPassword|validateFilter|validateNotBlank|validateTagName|validateUsername|vals|watchAdd|watchClose|watchFeed|watchOpen|watchPoll|watchRemove|watchSub|watchUnsub|weekOfYear|weekday|xq|xqDefine|xqEval|xqExecute|xqFindAll|xqFlatMap|xqHisRead|xqHisRollup|xqHisRollupAuto|xqMap|xqPivot|xqProjs|xqReadAll|xqReadAllList|xqReadByIds|xqReadByIdsList|year|yesterday)\\b(?=\\()"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.axon"
+}

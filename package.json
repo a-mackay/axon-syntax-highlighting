@@ -1,0 +1,26 @@
+{
+    "name": "axon-syntax-highlighting",
+    "displayName": "Axon Syntax Highlighting",
+    "description": "Syntax highlighting for the Axon programming language",
+    "version": "0.0.1",
+    "publisher": "amackayfoss",
+    "engines": {
+        "vscode": "^1.24.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "axon",
+            "aliases": ["Axon", "axon"],
+            "extensions": [".axon", ".trio"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "axon",
+            "scopeName": "source.axon",
+            "path": "./syntaxes/axon.tmLanguage.json"
+        }]
+    }
+}
