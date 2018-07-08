@@ -2,7 +2,7 @@
     "name": "axon-syntax-highlighting",
     "displayName": "Axon Syntax Highlighting",
     "description": "Syntax highlighting for the Axon programming language",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "amackayfoss",
     "repository": "https://github.com/a-mackay/axon-syntax-highlighting",
     "engines": {
